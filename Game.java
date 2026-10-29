@@ -44,6 +44,7 @@ public class Game
         addict = new Room("in the addict");
         
         // initialise room exits
+
         house.setExits(addict, garden, basement, null);
         basement.setExits(house, null, null, null);
         garden.setExits(shed, null, null, house);
@@ -143,19 +144,7 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = null;
-        if(direction.equals("north")) {
-            nextRoom = currentRoom.northExit;
-        }
-        if(direction.equals("east")) {
-            nextRoom = currentRoom.eastExit;
-        }
-        if(direction.equals("south")) {
-            nextRoom = currentRoom.southExit;
-        }
-        if(direction.equals("west")) {
-            nextRoom = currentRoom.westExit;
-        }
+        Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -185,16 +174,16 @@ public class Game
     {
         System.out.println("You are " + currentRoom.getDescription());
         System.out.print("Exits: ");
-        if(currentRoom.northExit != null) {
+        if(currentRoom.getExit("north") != null) {
             System.out.print("north ");
         }
-        if(currentRoom.eastExit != null) {
+        if(currentRoom.getExit("east") != null) {
             System.out.print("east ");
         }
-        if(currentRoom.southExit != null) {
+        if(currentRoom.getExit("south") != null) {
             System.out.print("south ");
         }
-        if(currentRoom.westExit != null) {
+        if(currentRoom.getExit("west") != null) {
             System.out.print("west ");
         }
         System.out.println();
