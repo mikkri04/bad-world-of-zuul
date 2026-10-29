@@ -45,11 +45,14 @@ public class Game
         
         // initialise room exits
 
-        house.setExits(addict, garden, basement, null);
-        basement.setExits(house, null, null, null);
-        garden.setExits(shed, null, null, house);
-        shed.setExits(null, null, garden, null);
-        addict.setExits(null, null, garden, null);
+        house.setExit("north", addict);
+        house.setExit("south", basement);
+        house.setExit("west", garden);
+        addict.setExit("south", house);
+        basement.setExit("north", house);
+        garden.setExit("north", shed);
+        garden.setExit("east", house);
+        shed.setExit("south", garden);
 
         currentRoom = house;  // start game house
     }
