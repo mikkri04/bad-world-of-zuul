@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Set;
+
 /**
  * Class Room - a room in an adventure game.
  *
@@ -46,6 +48,16 @@ public class Room
     {
         return exits.get(direction);
     }
+
+    public String getExitString() {
+
+        String returnString = "Exits:";
+        Set<String> keys = exits.keySet();
+        for(String exit : keys) {
+            returnString += " " + exit;
+        }
+        return returnString;
+    }
     /**
      * Return the description of the room (the one that was
      * defined in the constructor).
@@ -53,5 +65,10 @@ public class Room
     public String getDescription()
     {
         return description;
+    }
+
+    public String getLongDescription()
+    {
+        return "You are " + description + ".\n" + getExitString();
     }
 }

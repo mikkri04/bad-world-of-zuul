@@ -103,14 +103,20 @@ public class Game
         }
 
         String commandWord = command.getCommandWord();
-        if (commandWord.equals("help")) {
+        if(commandWord.equals("help")) {
             printHelp();
         }
-        else if (commandWord.equals("go")) {
+        else if(commandWord.equals("go")) {
             goRoom(command);
         }
-        else if (commandWord.equals("quit")) {
+        else if(commandWord.equals("look")) {
+            look();
+        }
+        else if(commandWord.equals("quit")) {
             wantToQuit = quit(command);
+        }
+        else if(commandWord.equals("hi")) {
+            hi();
         }
 
         return wantToQuit;
@@ -175,20 +181,15 @@ public class Game
 
     private void printLocationInfo()
     {
-        System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
-        if(currentRoom.getExit("north") != null) {
-            System.out.print("north ");
-        }
-        if(currentRoom.getExit("east") != null) {
-            System.out.print("east ");
-        }
-        if(currentRoom.getExit("south") != null) {
-            System.out.print("south ");
-        }
-        if(currentRoom.getExit("west") != null) {
-            System.out.print("west ");
-        }
-        System.out.println();
+        System.out.println(currentRoom.getLongDescription());
+    }
+
+    private void look()
+    {
+        System.out.println(currentRoom.getLongDescription());
+    }
+
+    private void hi(){
+        System.out.println("hi!");
     }
 }
