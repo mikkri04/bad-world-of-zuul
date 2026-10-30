@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -19,6 +21,7 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
+    private List<Item> items;
 
     /**
      * Create a room described "description". Initially, it has
@@ -30,6 +33,7 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<String, Room>();
+        items = new ArrayList<>();
     }
     /**
      * Define the exits of this room. Every direction either
@@ -69,6 +73,26 @@ public class Room
 
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n" + getExitString() + ".\n" + "You see the following items on the ground: " + getallItems();
+    }
+
+    public void addItem(String name, String description){
+        items.add(new Item(name, description));
+    }
+    public void removeItem(Item item){
+        items.remove(item);
+    }
+
+    public String getallItems(){
+        String s = "";
+        for (Item item : items)
+        {
+            s = s +"\n" + item.description;
+        }
+        return s;
+    }
+
+    public List<Item> getItems(){
+        return items;
     }
 }
